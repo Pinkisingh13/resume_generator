@@ -2,6 +2,8 @@
 
 A simple app where you can create your resume and AI will write a professional summary for you. I built this to learn full-stack development with Flutter and Node.js.
 
+⭐ **If you find this helpful, give it a star and follow me for more projects like this!**
+
 ## What does it do?
 
 You fill in your details like name, skills, education, work experience, and projects. The app then uses AI to generate a nicely written resume for you. You can download it as a PDF or share it with others.
@@ -66,7 +68,7 @@ You fill in your details like name, skills, education, work experience, and proj
 Live at: groq-ai-resume.netlify.app
 
 **Backend:** Render
-API: https://resume-generator-qm1w.onrender.com
+Deployed backend on Render.
 
 **Database:** MongoDB Atlas (cloud)
 
