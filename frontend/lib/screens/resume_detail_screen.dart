@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../models/resume.dart';
 import '../services/pdf_service.dart';
 import 'resume_form_screen.dart';
@@ -319,63 +320,65 @@ class ResumeDetailScreen extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildActionButton(
-                icon: Icons.download,
-                label: 'Download',
-                isPrimary: false,
-                onPressed: () async {
-                  try {
-                    final path = await pdfService.downloadPdf(resume);
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            path != null
-                              ? 'PDF saved successfully!'
-                              : 'Failed to save PDF',
+            if (!kIsWeb) ...[
+              const SizedBox(width: 12),
+              Expanded(
+                child: _buildActionButton(
+                  icon: Icons.download,
+                  label: 'Download',
+                  isPrimary: false,
+                  onPressed: () async {
+                    try {
+                      final path = await pdfService.downloadPdf(resume);
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              path != null
+                                ? 'PDF saved successfully!'
+                                : 'Failed to save PDF',
+                            ),
+                            backgroundColor: path != null ? Colors.green : Colors.red,
+                            duration: const Duration(seconds: 3),
                           ),
-                          backgroundColor: path != null ? Colors.green : Colors.red,
-                          duration: const Duration(seconds: 3),
-                        ),
-                      );
+                        );
+                      }
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Error: $e'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
                     }
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Error: $e'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                  }
-                },
+                  },
+                ),
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildActionButton(
-                icon: Icons.share,
-                label: 'Share',
-                isPrimary: false,
-                onPressed: () async {
-                  try {
-                    await pdfService.sharePdf(resume);
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Error: $e'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
+              const SizedBox(width: 12),
+              Expanded(
+                child: _buildActionButton(
+                  icon: Icons.share,
+                  label: 'Share',
+                  isPrimary: false,
+                  onPressed: () async {
+                    try {
+                      await pdfService.sharePdf(resume);
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Error: $e'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
                     }
-                  }
-                },
+                  },
+                ),
               ),
-            ),
+            ],
           ],
         ),
       ),

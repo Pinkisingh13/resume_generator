@@ -1,16 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import '../models/resume.dart';
 
 class ApiService {
-  // Automatically use correct URL based on platform
+
   static String get baseUrl {
-    if (Platform.isAndroid) {
-      return 'http://10.0.2.2:8000/api/resume-generator';
-    } else {
-      return 'http://localhost:8000/api/resume-generator';
-    }
+    return "https://resume-generator-qm1w.onrender.com/api/resume-generator";
   }
 
   // Get all resumes
@@ -52,7 +47,10 @@ class ApiService {
   }
 
   // Update resume
-  Future<Resume> updateResume(String id, Map<String, dynamic> resumeData) async {
+  Future<Resume> updateResume(
+    String id,
+    Map<String, dynamic> resumeData,
+  ) async {
     try {
       final response = await http.put(
         Uri.parse('$baseUrl/update-resume/$id'),
