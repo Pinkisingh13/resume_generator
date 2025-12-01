@@ -65,7 +65,7 @@ You fill in your details like name, skills, education, work experience, and proj
 ## Deployment
 
 **Frontend:** Netlify
-Live at: groq-ai-resume.netlify.app
+Live at: [groq-ai-resume.netlify.app](https://groq-ai-resume.netlify.app)
 
 **Backend:** Render
 Deployed backend on Render.
