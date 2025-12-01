@@ -8,6 +8,10 @@ A simple app where you can create your resume and AI will write a professional s
 
 You fill in your details like name, skills, education, work experience, and projects. The app then uses AI to generate a nicely written resume for you. You can download it as a PDF or share it with others.
 
+## 🎥Live Demo Video:
+https://streamable.com/qtv6t2
+
+
 ## Tech Stack
 
 **Frontend:**
